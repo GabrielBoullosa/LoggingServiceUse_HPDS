@@ -4,6 +4,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.appender.ConsoleAppender;
+import org.apache.logging.log4j.core.config.Configuration;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.apache.logging.log4j.core.config.builder.api.*;
 import org.apache.logging.log4j.core.config.builder.impl.BuiltConfiguration;
 
@@ -42,6 +44,9 @@ public class App {
                 .newRootLogger(Level.ERROR);
         rootLogger.add(builder.newAppenderRef("stdout"));
         builder.add(rootLogger);
+
+        /**/
+        Configurator.initialize(builder.build());
 
         Logger logger_0 = LogManager.getLogger("logger_file");
         Logger logger_1 = LogManager.getLogger("stdout");
